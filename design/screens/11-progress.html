@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SABI FIT · Progress</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#C8F135}a:hover{color:#E2FF7A}
+.s{position:relative;box-sizing:border-box;font-family:Manrope,system-ui,sans-serif;color:#F2F3F1;background:#0B0C0E;font-variant-numeric:tabular-nums;font-size:15px;line-height:1.4;overflow:hidden}
+.s *{box-sizing:border-box}
+.d{font-family:'Barlow Condensed',Manrope,sans-serif;font-weight:700;letter-spacing:.01em;text-transform:uppercase}
+.card{background:#15171A;border:1px solid #24282D;border-radius:18px}
+.mut{color:#9AA0A6}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9AA0A6}
+.chip{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1px solid #2A2E33;background:#15171A;color:#C9CDD1;font:700 13px Manrope,sans-serif;white-space:nowrap}
+.chip.on{background:#C8F135;color:#0B0C0E;border-color:#C8F135}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:84px;padding:8px 24px 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#0F1113;border-top:1px solid #1F2226}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font:700 11px Manrope,sans-serif;color:#80868D;text-decoration:none}
+.tab.on{color:#C8F135}
+.ex{display:flex;align-items:center;gap:12px;padding:14px 16px;color:#F2F3F1;text-decoration:none}
+.up{color:#C8F135;font-weight:800;font-size:12px}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:99px;background:#1E2125;color:#C9CDD1;font:700 11px Manrope,sans-serif}
+</style>
+<style>body{background:#050607}body>div{margin:0 auto}</style>
+</head>
+<body>
+<div class="s" style="width: 390px; height: 1000px;">
+  <header style="padding: 24px 20px 12px;">
+    <h1 class="d" style="margin: 0; font-size: 40px; line-height: 1;">Progress</h1>
+    <div style="display: flex; gap: 8px; margin-top: 14px; overflow: hidden;"><span class="chip on">All</span><span class="chip">Chest</span><span class="chip">Biceps</span><span class="chip">Arms</span><span class="chip">Shoulders</span><span class="chip">Back</span></div>
+  </header>
+
+  <div style="padding: 4px 20px 0; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+      <div class="card" style="padding: 14px;"><div class="lbl">Workouts · 30 days</div><div class="d" style="font-size: 34px;">15</div></div>
+      <div class="card" style="padding: 14px;"><div class="lbl">New bests · 30 days</div><div class="d" style="font-size: 34px; color: #C8F135;">9</div></div>
+    </div>
+
+    <h2 class="lbl" style="margin: 6px 0 0;">Your exercises</h2>
+
+    <a class="card ex" href="12-exercise-progress.html">
+      <span style="flex: 1;"><b>Push-ups</b> <span class="tag">Chest</span><br><span class="d" style="font-size: 26px;">31 reps</span> <span class="up">+9 since Aug</span></span>
+      <svg width="96" height="40" viewBox="0 0 96 40" aria-hidden="true"><polyline points="2,34 15,30 28,28 41,22 54,20 67,14 80,12 94,8" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </a>
+    <a class="card ex" href="12-exercise-progress.html">
+      <span style="flex: 1;"><b>Hammer Curl</b> <span class="tag">Biceps</span><br><span class="d" style="font-size: 26px;">25 kg × 12</span> <span class="up">+3 reps</span></span>
+      <svg width="96" height="40" viewBox="0 0 96 40" aria-hidden="true"><polyline points="2,32 15,32 28,26 41,26 54,20 67,20 80,14 94,12" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </a>
+    <a class="card ex" href="12-exercise-progress.html">
+      <span style="flex: 1;"><b>Dumbbell Curl</b> <span class="tag">Biceps</span><br><span class="d" style="font-size: 26px;">25 kg × 10</span> <span class="up">+2 reps</span></span>
+      <svg width="96" height="40" viewBox="0 0 96 40" aria-hidden="true"><polyline points="2,30 15,30 28,30 41,24 54,24 67,20 80,20 94,16" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </a>
+    <a class="card ex" href="12-exercise-progress.html">
+      <span style="flex: 1;"><b>Dumbbell Floor Press</b> <span class="tag">Chest</span><br><span class="d" style="font-size: 26px;">25 kg × 11</span> <span class="up">+2 reps</span></span>
+      <svg width="96" height="40" viewBox="0 0 96 40" aria-hidden="true"><polyline points="2,30 15,28 28,28 41,22 54,22 67,18 80,18 94,18" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </a>
+    <a class="card ex" href="12-exercise-progress.html">
+      <span style="flex: 1;"><b>Diamond Push-ups</b> <span class="tag">Chest</span><br><span class="d" style="font-size: 26px;">11 reps</span> <span class="up">+3 in 4 wks</span></span>
+      <svg width="96" height="40" viewBox="0 0 96 40" aria-hidden="true"><polyline points="2,32 15,30 28,30 41,26 54,22 67,22 80,18 94,14" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </a>
+  </div>
+
+  <nav class="tabbar" aria-label="Main">
+    <a class="tab" href="04-today.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg>Today</a>
+    <a class="tab" href="10-history.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>History</a>
+    <a class="tab on" href="11-progress.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>Progress</a>
+  </nav>
+</div>
+</body>
+</html>

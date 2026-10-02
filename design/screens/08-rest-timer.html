@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SABI FIT · Rest Timer</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#C8F135}a:hover{color:#E2FF7A}
+.s{position:relative;box-sizing:border-box;font-family:Manrope,system-ui,sans-serif;color:#F2F3F1;background:#0B0C0E;font-variant-numeric:tabular-nums;font-size:15px;line-height:1.4;overflow:hidden}
+.s *{box-sizing:border-box}
+.d{font-family:'Barlow Condensed',Manrope,sans-serif;font-weight:700;letter-spacing:.01em;text-transform:uppercase}
+.mut{color:#9AA0A6}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9AA0A6}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 20px;border-radius:16px;border:0;font:800 17px Manrope,sans-serif;background:#C8F135;color:#0B0C0E;text-decoration:none}
+.btn2{background:#1E2125;color:#F2F3F1;border:1px solid #2A2E33}
+.ib{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid #2A2E33;background:#15171A;color:#F2F3F1;padding:0;text-decoration:none}
+</style>
+<style>body{background:#050607}body>div{margin:0 auto}</style>
+</head>
+<body>
+<div class="s" style="width: 390px; height: 844px; display: flex; flex-direction: column; padding: 20px;">
+  <header style="display: flex; align-items: center; justify-content: space-between;">
+    <a class="ib" href="07-workout.html" aria-label="Back to workout"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+    <span class="lbl">Chest day · 18:42</span>
+    <span style="width: 44px;"></span>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;">
+    <div style="position: relative; width: 280px; height: 280px;">
+      <svg width="280" height="280" viewBox="0 0 280 280" aria-hidden="true" style="transform: rotate(-90deg);">
+        <circle cx="140" cy="140" r="120" fill="none" stroke="#1E2125" stroke-width="16"></circle>
+        <circle cx="140" cy="140" r="120" fill="none" stroke="#C8F135" stroke-width="16" stroke-linecap="round" stroke-dasharray="411 754"></circle>
+      </svg>
+      <div role="timer" aria-live="polite" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <span class="lbl" style="color: #C8F135;">Rest</span>
+        <span class="d" style="font-size: 96px; line-height: 1;">0:49</span>
+        <span class="mut" style="font-size: 14px; font-weight: 700;">of 1:30</span>
+      </div>
+    </div>
+
+    <div style="width: 100%; padding: 16px; border-radius: 18px; background: #15171A; border: 1px solid #24282D; text-align: center;">
+      <div class="lbl">Up next</div>
+      <div class="d" style="font-size: 28px; margin-top: 4px;">Push-ups · Set 3</div>
+      <div class="mut" style="font-weight: 700;">Last time 22 · try for 23</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-bottom: 12px;">
+    <button class="btn btn2" type="button">+15s</button>
+    <a class="btn" href="07-workout.html">Skip rest</a>
+  </div>
+</div>
+</body>
+</html>
