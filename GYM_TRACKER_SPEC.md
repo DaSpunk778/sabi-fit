@@ -79,7 +79,7 @@ Not in v1: social login (Google etc.), offline install (PWA), chart libraries, e
 | 9 | `/progress/[exerciseId]` | **Exercise progress** | Current best; optional **goal** (e.g. 40 push-ups) with progress bar; SVG line chart of best set per session (last 8) with the goal as a dashed line; every session's sets. Edit button to set the goal. |
 | D | `/settings` | **Settings** | Account card (name, email, edit name); rest time stepper; sound and vibration switches; **Download my data (.json)**; **Log out** → Welcome. |
 
-**Route protection:** Next.js `middleware.ts` refreshes the Supabase session. `/` (landing) is always public. Not logged in → redirect any app route to `/welcome`. Logged in → redirect `/welcome`, `/signup`, `/login` to `/app`. After sign-up or log-in → `/app`.
+**Route protection:** `proxy.ts` (what Next.js 16 calls middleware) refreshes the Supabase session. `/` (landing) is always public. Not logged in → redirect any app route to `/welcome`. Logged in → redirect `/welcome`, `/signup`, `/login` to `/app`. After sign-up or log-in → `/app`.
 
 Note: the other app routes in this table (`/plan`, `/workout`, `/history`, `/progress`, `/settings`) stay as listed; they're protected the same way.
 
@@ -133,7 +133,7 @@ This is what makes sure nobody else can ever see my workouts.
 
 Note: a user's `goal_reps` on a built-in exercise needs a per-user value. Simplest v1 approach: when I set a goal on a built-in exercise, create my own copy of that exercise and use it from then on. (Or add a small `exercise_goals` table later.)
 
-TypeScript types (`src/types.ts`):
+TypeScript types (`types.ts`):
 ```ts
 type DayType = 'chest' | 'biceps' | 'arms' | 'shoulders' | 'back' | 'legs';
 type ExerciseKind = 'weighted' | 'bodyweight';
@@ -143,7 +143,7 @@ interface WorkoutExercise { exerciseId: string; sets: WorkoutSet[]; }
 interface ActiveWorkout { dayType: DayType; startedAt: string; exercises: WorkoutExercise[]; } // Zustand only
 ```
 
-Rule: components don't call Supabase directly. Put queries in small functions in `src/lib/data/` (e.g. `getLastWorkout(dayType)`, `saveWorkout(active)`, `getExercises(muscle)`).
+Rule: components don't call Supabase directly. Put queries in small functions in `lib/data/` (e.g. `getLastWorkout(dayType)`, `saveWorkout(active)`, `getExercises(muscle)`).
 
 ### Seed exercises (SQL seed, `user_id = null`)
 - **Chest:** Push-ups, Wide Push-ups, Diamond Push-ups, Decline Push-ups (bodyweight); Dumbbell Floor Press, Dumbbell Fly, Dumbbell Pullover (weighted, 25 kg); Bench Press (weighted)
@@ -192,7 +192,7 @@ Keep SQL in `supabase/migrations/` (schema + RLS) and `supabase/seed.sql`.
 **Suggested day**
 - On Today, highlight the day type with the oldest last workout (never done counts as oldest).
 
-**Rest timer** (`src/lib/timer.ts` + Zustand store)
+**Rest timer** (`lib/timer.ts` + Zustand store)
 - Store `endsAt` (epoch ms), not a counting-down number. Remaining = `endsAt - Date.now()`. This stays correct when the phone locks.
 - Update with `requestAnimationFrame` (or `gsap.ticker`); recompute on `visibilitychange`.
 - `+15s` → `endsAt += 15000`. Skip → clear.
@@ -206,42 +206,41 @@ Keep SQL in `supabase/migrations/` (schema + RLS) and `supabase/seed.sql`.
 ## 6. Folder structure
 
 ```
-middleware.ts                      # session refresh + route protection
+proxy.ts                           # session refresh + route protection (Next.js 16 name for middleware)
 supabase/
   migrations/                      # schema + RLS
   seed.sql                         # built-in exercises
-src/
-  app/
-    page.tsx                       # public landing page
-    (auth)/welcome/page.tsx
-    (auth)/signup/page.tsx
-    (auth)/login/page.tsx
-    (app)/layout.tsx               # tab bar
-    (app)/app/page.tsx             # Today
-    (app)/plan/[dayType]/page.tsx
-    (app)/plan/[dayType]/add/page.tsx
-    (app)/workout/page.tsx
-    (app)/workout/[id]/summary/page.tsx
-    (app)/history/page.tsx
-    (app)/progress/page.tsx
-    (app)/progress/[exerciseId]/page.tsx
-    (app)/settings/page.tsx
-    layout.tsx, globals.css
-  components/
-    brand/     # Logo, Wordmark
-    ui/        # Button, Card, Chip, Stepper, TabBar, Badge, TextField
-    workout/   # ExerciseCard, SetRow, RestBar, RestTimerScreen
-    progress/  # LineChart (SVG), Sparkline
-  lib/
-    supabase/  # client.ts (browser), server.ts (server components)
-    data/      # profiles.ts, exercises.ts, workouts.ts
-    stats.ts   # bests, totals, "last time", suggested day (pure functions)
-    timer.ts   # pure timer maths
-    gsap.ts
-  stores/
-    activeWorkout.ts
-    timer.ts
-  types.ts
+app/
+  page.tsx                       # public landing page
+  (auth)/welcome/page.tsx
+  (auth)/signup/page.tsx
+  (auth)/login/page.tsx
+  (app)/layout.tsx               # tab bar
+  (app)/app/page.tsx             # Today
+  (app)/plan/[dayType]/page.tsx
+  (app)/plan/[dayType]/add/page.tsx
+  (app)/workout/page.tsx
+  (app)/workout/[id]/summary/page.tsx
+  (app)/history/page.tsx
+  (app)/progress/page.tsx
+  (app)/progress/[exerciseId]/page.tsx
+  (app)/settings/page.tsx
+  layout.tsx, globals.css
+components/
+  brand/     # Logo, Wordmark
+  ui/        # Button, Card, Chip, Stepper, TabBar, Badge, TextField
+  workout/   # ExerciseCard, SetRow, RestBar, RestTimerScreen
+  progress/  # LineChart (SVG), Sparkline
+lib/
+  supabase/  # client.ts (browser), server.ts (server components)
+  data/      # profiles.ts, exercises.ts, workouts.ts
+  stats.ts   # bests, totals, "last time", suggested day (pure functions)
+  timer.ts   # pure timer maths
+  gsap.ts
+stores/
+  activeWorkout.ts
+  timer.ts
+types.ts
 ```
 
 ---
@@ -269,7 +268,7 @@ src/
 Do one milestone at a time. Stop after each one so I can review and test it.
 
 1. **Setup:** Next.js + TS + Tailwind + fonts + colour variables; logo/wordmark components; app shell with 3-tab bar; empty pages for every route.
-2. **Supabase + auth:** create project; migrations (tables + RLS) and seed; Supabase clients; middleware; Welcome, Create account, Log in, Log out. Test: two different accounts can't see each other's data.
+2. **Supabase + auth:** create project; migrations (tables + RLS) and seed; Supabase clients; proxy (session + route protection); Welcome, Create account, Log in, Log out. Test: two different accounts can't see each other's data.
 3. **Today + Plan + Add exercises:** day tiles, suggested day, plan pre-fill, sets stepper, picker, create custom exercise.
 4. **Workout logging:** active-workout store, log sets, "last time" values, add set/exercise, finish (save to Supabase with retry), discard, resume after reload.
 5. **Rest timer:** timestamp-based timer, rest bar, full-screen view, beep + vibrate.
@@ -308,3 +307,5 @@ Google sign-in · email confirmation · bodyweight log · stopwatch / interval t
 | 2026-10-02 | Supabase handles JWT sessions in cookies | No hand-written token code |
 | 2026-10-02 | react-icons (Feather), hand-made SVG chart | Personal preference; one chart doesn't need a library |
 | 2026-10-02 | "Arms" day = triceps & forearms | Biceps has its own day |
+| 2026-10-12 | No `src/` folder: `app/`, `components/`, `lib/` live at the project root | Owner's preference |
+| 2026-10-12 | `proxy.ts` instead of `middleware.ts` | Next.js 16 renamed middleware to proxy |
