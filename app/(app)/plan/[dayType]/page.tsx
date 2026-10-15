@@ -18,7 +18,9 @@ function bestLabel(exercise: Exercise, workouts: Workout[]) {
   const best = bestOf(exercise, workouts);
   if (!best) return "No best yet";
   // The weight already shows in the tag, so weighted bests only need the reps.
-  return best.kind === "bodyweight" ? `Best ${best.reps}` : `Best × ${best.reps}`;
+  return best.kind === "bodyweight"
+    ? `Best ${best.reps}`
+    : `Best × ${best.reps}`;
 }
 
 export default async function PlanDayPage({
@@ -41,8 +43,14 @@ export default async function PlanDayPage({
     bestLabels[exercise.id] = bestLabel(exercise, workouts);
   }
 
-  return (
-    <main className="flex-1">
+  // Skip exercises that no longer exist (e.g. a custom one you deleted).
+  const known = new Set(exercises.map((exercise) => exercise.id));
+  const initialPlan = planFromWorkout(last).filter((item) =>
+    known.has(item.exerciseId),
+  );
+
+  const header = (
+    <>
       <header className="flex items-center gap-3 px-5 pt-4 pb-2">
         <IconLink href="/app" aria-label="Back to today">
           <FiChevronLeft size={20} />
@@ -61,18 +69,28 @@ export default async function PlanDayPage({
           <span>
             Copied from your last {dayType} day{" "}
             <b>
-              ({format(new TZDate(Date.parse(last.endedAt), now.timeZone), "EEE d MMM")})
+              (
+              {format(
+                new TZDate(Date.parse(last.endedAt), now.timeZone),
+                "EEE d MMM",
+              )}
+              )
             </b>
             . Change anything you want.
           </span>
         </div>
       )}
+    </>
+  );
 
+  return (
+    <main className="flex-1">
       <PlanEditor
         dayType={dayType}
         exercises={exercises}
-        initialPlan={planFromWorkout(last)}
+        initialPlan={initialPlan}
         bestLabels={bestLabels}
+        header={header}
       />
     </main>
   );
