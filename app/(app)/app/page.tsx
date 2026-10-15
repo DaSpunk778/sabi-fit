@@ -66,7 +66,7 @@ export default async function TodayPage() {
 
       <header className="px-5 pb-3">
         <p className="label mt-2">{format(now, "EEE d MMM")}</p>
-        <h1 className="display mt-1 text-[44px] leading-none">
+        <h1 className="display mt-1 text-[40px] leading-none">
           What are we
           <br />
           training today?
@@ -127,7 +127,7 @@ export default async function TodayPage() {
                     {isSuggested ? "Suggested" : ""}
                   </span>
                   <span>
-                    <span className="display block text-3xl leading-none">
+                    <span className="display block text-2xl leading-none">
                       {day}
                     </span>
                     <span
