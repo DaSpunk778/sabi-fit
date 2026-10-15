@@ -40,3 +40,9 @@ export interface Workout {
   endedAt: string;
   exercises: WorkoutExercise[];
 }
+
+
+/** Narrows an unknown URL segment to a DayType. */
+export function isDayType(value: string): value is DayType {
+  return (DAY_TYPES as readonly string[]).includes(value);
+}
