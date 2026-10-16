@@ -2,11 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { FiCheck, FiPlus, FiSearch, FiX } from "react-icons/fi";
+import { ExerciseAnimation } from "@/components/exercise/ExerciseAnimation";
 import { BottomBar } from "@/components/ui/BottomBar";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { IconButton } from "@/components/ui/IconLink";
+import { motionFor } from "@/lib/exerciseMotions";
 import { DAY_TYPES, type DayType, type Exercise } from "@/types";
 import { CreateExerciseForm } from "./CreateExerciseForm";
 
@@ -129,7 +131,7 @@ export function ExercisePicker({
                 return (
                   <li key={exercise.id}>
                     <label
-                      className={`flex min-h-15.5 items-center gap-3 px-4 py-3 ${
+                      className={`flex min-h-15.5 items-center gap-3 px-4 py-2 ${
                         planned ? "" : "cursor-pointer hover:bg-raised"
                       }`}
                     >
@@ -151,6 +153,7 @@ export function ExercisePicker({
                       >
                         {checked && <FiCheck size={16} strokeWidth={3.5} />}
                       </span>
+                      <ExerciseAnimation motion={motionFor(exercise)} />
                       <span className="min-w-0 flex-1">
                         <b>{exercise.name}</b>
                         <br />
