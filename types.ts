@@ -32,6 +32,14 @@ export interface Exercise {
   goalReps: number | null;
 }
 
+/** What you fill in to create your own exercise. */
+export interface NewExercise {
+  name: string;
+  muscle: DayType;
+  kind: ExerciseKind;
+  defaultWeightKg: number | null;
+}
+
 /** A finished, saved workout */
 export interface Workout {
   id: string;

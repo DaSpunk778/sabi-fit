@@ -1,13 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { FiCheck, FiSearch, FiX } from "react-icons/fi";
+import { FiCheck, FiPlus, FiSearch, FiX } from "react-icons/fi";
 import { BottomBar } from "@/components/ui/BottomBar";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { IconButton } from "@/components/ui/IconLink";
 import { DAY_TYPES, type DayType, type Exercise } from "@/types";
+import { CreateExerciseForm } from "./CreateExerciseForm";
 
 type ExercisePickerProps = {
   dayType: DayType;
@@ -15,14 +16,19 @@ type ExercisePickerProps = {
   /** Already in the plan: shown ticked, and can't be picked twice. */
   inPlan: ReadonlySet<string>;
   onAdd: (exerciseIds: string[]) => void;
+  /** A new exercise was saved, so the list it comes from needs it too. */
+  onCreated: (exercise: Exercise) => void;
   onClose: () => void;
 };
 
 function equipmentLabel(exercise: Exercise) {
   if (exercise.kind === "bodyweight") return "Bodyweight";
-  return exercise.defaultWeightKg !== null
+  if (exercise.defaultWeightKg === null) return "Weighted";
+  // Built-in weighted moves with a default weight are the 25 kg dumbbell ones;
+  // your own could be any equipment.
+  return exercise.userId === null
     ? `${exercise.defaultWeightKg} kg dumbbell`
-    : "Weighted";
+    : `Weighted · ${exercise.defaultWeightKg} kg`;
 }
 
 export function ExercisePicker({
@@ -30,12 +36,14 @@ export function ExercisePicker({
   exercises,
   inPlan,
   onAdd,
+  onCreated,
   onClose,
 }: ExercisePickerProps) {
   const [query, setQuery] = useState("");
   const [muscle, setMuscle] = useState<DayType>(dayType);
   // An array rather than a Set so exercises are added in the order you tick them.
   const [selected, setSelected] = useState<string[]>([]);
+  const [creating, setCreating] = useState(false);
 
   const visible = useMemo(() => {
     const search = query.trim().toLowerCase();
@@ -57,6 +65,15 @@ export function ExercisePicker({
         ? current.filter((id) => id !== exerciseId)
         : [...current, exerciseId],
     );
+  }
+
+  // Show the new exercise in its muscle group, already ticked.
+  function handleCreated(exercise: Exercise) {
+    onCreated(exercise);
+    setMuscle(exercise.muscle);
+    setQuery("");
+    setSelected((current) => [...current, exercise.id]);
+    setCreating(false);
   }
 
   const count = selected.length;
@@ -84,7 +101,7 @@ export function ExercisePicker({
         </label>
 
         {/* Scrolls sideways on narrow phones; -mx/px lets chips reach the screen edge */}
-        <div className="-mx-5 flex gap-2 overflow-x-auto px-5 [scrollbar-width:none]">
+        <div className="-mx-5 flex gap-2 overflow-x-auto px-5 scrollbar-none">
           {DAY_TYPES.map((day) => (
             <Chip
               key={day}
@@ -152,6 +169,25 @@ export function ExercisePicker({
               })}
             </ul>
           </Card>
+        )}
+
+        {creating ? (
+          <CreateExerciseForm
+            initialName={query.trim()}
+            initialMuscle={muscle}
+            exercises={exercises}
+            onCreated={handleCreated}
+            onCancel={() => setCreating(false)}
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setCreating(true)}
+            className="flex min-h-12 items-center justify-center gap-2 text-[15px] font-extrabold text-accent transition-colors hover:text-accent-hover"
+          >
+            <FiPlus size={18} strokeWidth={2.6} />
+            Create your own exercise
+          </button>
         )}
       </div>
 
