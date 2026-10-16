@@ -17,7 +17,7 @@ type PlanEditorProps = {
   exercises: Exercise[];
   initialPlan: PlanItem[];
   /** exercise id → "Best 30" / "Best × 11", worked out on the server. */
-  bestLabels: Record<string, string>;
+  bestLabels: Partial<Record<string, string>>;
   /** Title and "copied from" note, rendered on the server. Hidden while picking. */
   header: React.ReactNode;
 };
@@ -49,12 +49,20 @@ export function PlanEditor({
   header,
 }: PlanEditorProps) {
   const [plan, setPlan] = useState<PlanItem[]>(initialPlan);
+  // Exercises you create on this visit. The server's list doesn't have them
+  // until the page loads again, so they're added on here.
+  const [created, setCreated] = useState<Exercise[]>([]);
   const pickerOpen = useSearchParams().has("add");
+
+  const allExercises = useMemo(
+    () => [...exercises, ...created],
+    [exercises, created],
+  );
 
   // A list is fine to search once; a Map is better when every row does it.
   const byId = useMemo(
-    () => new Map(exercises.map((exercise) => [exercise.id, exercise])),
-    [exercises],
+    () => new Map(allExercises.map((exercise) => [exercise.id, exercise])),
+    [allExercises],
   );
   const inPlan = useMemo(
     () => new Set(plan.map((item) => item.exerciseId)),
@@ -92,9 +100,10 @@ export function PlanEditor({
     return (
       <ExercisePicker
         dayType={dayType}
-        exercises={exercises}
+        exercises={allExercises}
         inPlan={inPlan}
         onAdd={addExercises}
+        onCreated={(exercise) => setCreated((current) => [...current, exercise])}
         onClose={closePicker}
       />
     );
@@ -126,7 +135,7 @@ export function PlanEditor({
                   {tagLabel(exercise)}
                 </span>
                 <span className="text-[13px] text-muted">
-                  {bestLabels[exercise.id]}
+                  {bestLabels[exercise.id] ?? "No best yet"}
                 </span>
               </span>
 

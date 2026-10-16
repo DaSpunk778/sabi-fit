@@ -1,0 +1,107 @@
+/*
+  SABI FIT · Exercise animations
+  Pure CSS keyframes on inline SVG (no GSAP, no JS, no images).
+  Every figure is drawn in a 48×48 viewBox; transform-origins are in viewBox units
+  thanks to `transform-box: view-box`.
+*/
+
+.tile {
+  /* theme hooks: override from the parent if needed */
+  --ex-accent: #c8f135;
+  --ex-floor: #2a2e33;
+  --ex-duration: 1.4s;
+
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #0f1113;
+  border: 1px solid #24282d;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+}
+
+/* drawing styles */
+.fig {
+  fill: none;
+  stroke: var(--ex-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.floor {
+  stroke: var(--ex-floor);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.solid {
+  fill: var(--ex-accent);
+  stroke: none;
+}
+
+/* every moving part shares the same timing → parts stay in sync */
+.mv {
+  transform-box: view-box;
+  animation-duration: var(--ex-duration);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* paused state (e.g. when the tile is off-screen or the user prefers stillness) */
+.paused .mv {
+  animation-play-state: paused;
+}
+
+/* ── Push-up (chest) — body pivots on the feet, arm shortens ───────────── */
+.puBody { transform-origin: 40px 37px; animation-name: puBody; }
+.puArm  { transform-origin: 14px 37px; animation-name: puArm; }
+@keyframes puBody { to { transform: rotate(-12deg); } }
+@keyframes puArm  { to { transform: scaleY(0.49); } }
+
+/* ── Press (floor press / bench) — arm shortens, dumbbell drops ────────── */
+.prArm { transform-origin: 22px 36px; animation-name: prArm; }
+.prDb  { animation-name: prDb; }
+@keyframes prArm { to { transform: scaleY(0.5); } }
+@keyframes prDb  { to { transform: translateY(10px); } }
+
+/* ── Pullover — straight arm swings back over the head ─────────────────── */
+.pvArm { transform-origin: 22px 36px; animation-name: pvArm; }
+@keyframes pvArm { to { transform: rotate(-62deg); } }
+
+/* ── Fly — both arms open outwards ─────────────────────────────────────── */
+.flL { transform-origin: 17px 26px; animation-name: flL; }
+.flR { transform-origin: 31px 26px; animation-name: flR; }
+@keyframes flL { to { transform: rotate(-58deg); } }
+@keyframes flR { to { transform: rotate(58deg); } }
+
+/* ── NEW · Curl (biceps / hammer) — forearm swings up from the elbow ───── */
+.cuArm { transform-origin: 29px 25px; animation-name: cuArm; }
+@keyframes cuArm { to { transform: rotate(-130deg); } }
+
+/* ── NEW · Overhead press (shoulders) — arms lower to shoulder height ──── */
+.ohArms { transform-origin: 24px 17px; animation-name: ohArms; }
+.ohDb   { animation-name: ohDb; }
+@keyframes ohArms { to { transform: scaleY(0.45); } }
+@keyframes ohDb   { to { transform: translateY(6.6px); } }
+
+/* ── NEW · Row (back) — arm pulls the dumbbell up to the hip ───────────── */
+.rwArm { transform-origin: 14px 21px; animation-name: rwArm; }
+.rwDb  { animation-name: rwDb; }
+@keyframes rwArm { to { transform: scaleY(0.45); } }
+@keyframes rwDb  { to { transform: translateY(-7.15px); } }
+
+/* ── NEW · Squat (legs) — thigh folds at the knee, torso stays upright ─── */
+.sqThigh { transform-origin: 26px 33px; animation-name: sqThigh; }
+.sqTorso { transform-origin: 24px 21px; animation-name: sqTorso; }
+@keyframes sqThigh { to { transform: rotate(-70deg); } }
+@keyframes sqTorso { to { transform: rotate(95deg); } }
+
+/* accessibility: no looping motion for people who ask the OS for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .mv { animation: none; }
+}

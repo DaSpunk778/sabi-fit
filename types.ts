@@ -10,6 +10,28 @@ export const DAY_TYPES = [
 export type DayType = (typeof DAY_TYPES)[number];
 export type ExerciseKind = "weighted" | "bodyweight";
 
+/** The looping figures an exercise can show (components/exercise). */
+export const EXERCISE_MOTIONS = [
+  "pushup",
+  "press",
+  "pullover",
+  "fly",
+  "curl",
+  "overhead_press",
+  "row",
+  "squat",
+] as const;
+
+export type ExerciseMotion = (typeof EXERCISE_MOTIONS)[number];
+
+/** Checks a value (say, from the database) really is one of the motions. */
+export function isExerciseMotion(value: unknown): value is ExerciseMotion {
+  return (
+    typeof value === "string" &&
+    (EXERCISE_MOTIONS as readonly string[]).includes(value)
+  );
+}
+
 export interface WorkoutSet {
   reps: number | null;
   weightKg: number | null;
@@ -30,6 +52,14 @@ export interface Exercise {
   kind: ExerciseKind;
   defaultWeightKg: number | null;
   goalReps: number | null;
+}
+
+/** What you fill in to create your own exercise. */
+export interface NewExercise {
+  name: string;
+  muscle: DayType;
+  kind: ExerciseKind;
+  defaultWeightKg: number | null;
 }
 
 /** A finished, saved workout */
