@@ -38,6 +38,7 @@ export interface WorkoutSet {
   done: boolean;
 }
 
+
 export interface WorkoutExercise {
   exerciseId: string;
   sets: WorkoutSet[];
@@ -71,6 +72,17 @@ export interface Workout {
   exercises: WorkoutExercise[];
 }
 
+/**
+ * A workout in progress. Lives only on this phone (localStorage) until you
+ * finish it — that's what makes a dropped signal mid-session harmless.
+ * No `id`: it doesn't exist in the database yet.
+ */
+
+export interface ActiveWorkout {
+  dayType: DayType;
+  startedAt: string;
+  exercises: WorkoutExercise[];
+}
 
 /** Narrows an unknown URL segment to a DayType. */
 export function isDayType(value: string): value is DayType {

@@ -19,6 +19,7 @@ import {
 } from "@/lib/stats";
 import { getTimeZone } from "@/lib/timezone";
 import { DAY_TYPES, type Exercise } from "@/types";
+import { TabBar } from "@/components/ui/TabBar";
 
 export const metadata: Metadata = { title: "Today" };
 
@@ -184,6 +185,7 @@ export default async function TodayPage() {
           )}
         </Card>
       </div>
+      <TabBar active="today" />
     </main>
   );
 }

@@ -1,5 +1,4 @@
 import { TimeZoneSync } from "@/components/TimeZoneSync";
-import { TabBar } from "@/components/ui/TabBar";
 import { getTimeZone } from "@/lib/timezone";
 
 export default async function AppLayout({
@@ -12,7 +11,6 @@ export default async function AppLayout({
   return (
     <div className="relative mx-auto flex min-h-dvh w-full max-w-120 flex-col bg-bg">
       {children}
-      <TabBar />
       <TimeZoneSync serverTimeZone={timeZone} />
     </div>
   );

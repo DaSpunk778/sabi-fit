@@ -6,7 +6,7 @@ import {
   isSameWeek,
   startOfWeek,
 } from "date-fns";
-import { DAY_TYPES, type DayType, type Exercise, type Workout } from "@/types";
+import { DAY_TYPES, WorkoutSet, type DayType, type Exercise, type Workout } from "@/types";
 
 // Pure functions. Every `workouts` argument is expected newest first,
 // and `now` carries the user's time zone.
@@ -140,4 +140,18 @@ export function topBests(
   }
 
   return top;
+}
+
+/**
+ * The sets you did for this exercise the last time you trained it.
+ * `workouts` is newest first, so the first match is the latest.
+ */
+export function lastSetsFor(
+  exerciseId: string,
+  workouts: Workout[],
+): WorkoutSet[] {
+  for (const workout of workouts) {
+    const entry = workout.exercises.find((e) => e.execriseId === exerciseId);
+  }
+  return [];
 }
