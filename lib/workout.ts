@@ -4,7 +4,9 @@ import type {
   ExerciseKind,
   WorkoutExercise,
   WorkoutSet,
-}  from "@/types";
+} from "@/types";
+
+import type { PlanItem } from "./plan";
 
 /** Turn a plan into empty sets, ready to log. */
 export function workoutFromPlan(

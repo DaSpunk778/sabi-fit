@@ -49,7 +49,7 @@ export async function saveWorkout(input: {
     .from("workouts")
     .insert({
       user_id: user.id,
-      day_type: Input.dayType,
+      day_type: input.dayType,
       started_at: input.startedAt,
       ended_at: new Date().toISOString(),
       exercises: input.exercises,

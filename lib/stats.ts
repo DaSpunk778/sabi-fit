@@ -151,7 +151,8 @@ export function lastSetsFor(
   workouts: Workout[],
 ): WorkoutSet[] {
   for (const workout of workouts) {
-    const entry = workout.exercises.find((e) => e.execriseId === exerciseId);
+    const entry = workout.exercises.find((e) => e.exerciseId === exerciseId);
+    if (entry) return entry.sets;
   }
   return [];
 }
