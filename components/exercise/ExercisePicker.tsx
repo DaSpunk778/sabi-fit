@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { IconButton } from "@/components/ui/IconLink";
+import { equipmentLabel } from "@/lib/exerciseLabels";
 import { motionFor } from "@/lib/exerciseMotions";
 import { DAY_TYPES, type DayType, type Exercise } from "@/types";
 import { CreateExerciseForm } from "./CreateExerciseForm";
@@ -23,14 +24,17 @@ type ExercisePickerProps = {
   onClose: () => void;
 };
 
-function equipmentLabel(exercise: Exercise) {
-  if (exercise.kind === "bodyweight") return "Bodyweight";
-  if (exercise.defaultWeightKg === null) return "Weighted";
-  // Built-in weighted moves with a default weight are the 25 kg dumbbell ones;
-  // your own could be any equipment.
-  return exercise.userId === null
-    ? `${exercise.defaultWeightKg} kg dumbbell`
-    : `Weighted · ${exercise.defaultWeightKg} kg`;
+// The picker opens on top of the screen that uses it rather than on its own
+// route, so whatever you're editing there (a plan, a workout) survives.
+// `?add` in the URL marks it open, which also lets the phone's back button
+// close it. Screens read it with useSearchParams().has("add").
+export function openPicker() {
+  window.history.pushState(null, "", "?add");
+  window.scrollTo(0, 0);
+}
+
+export function closePicker() {
+  window.history.back();
 }
 
 export function ExercisePicker({

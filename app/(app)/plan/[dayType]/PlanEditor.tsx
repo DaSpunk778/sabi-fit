@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { FiPlay, FiPlus, FiX } from "react-icons/fi";
 import { BottomBar } from "@/components/ui/BottomBar";
@@ -8,8 +8,14 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Stepper } from "@/components/ui/Stepper";
 import { addToPlan, totalSets, type PlanItem } from "@/lib/plan";
+import { workoutFromPlan } from "@/lib/workout";
+import { useActiveWorkout } from "@/stores/activeWorkout";
 import type { DayType, Exercise } from "@/types";
-import { ExercisePicker } from "./ExercisePicker";
+import {
+  ExercisePicker,
+  closePicker,
+  openPicker,
+} from "@/components/exercise/ExercisePicker";
 
 type PlanEditorProps = {
   dayType: DayType;
@@ -21,18 +27,6 @@ type PlanEditorProps = {
   /** Title and "copied from" note, rendered on the server. Hidden while picking. */
   header: React.ReactNode;
 };
-
-// The picker is part of this page rather than its own route, so the plan
-// you're editing survives opening it. `?add` in the URL marks it open, which
-// also lets the phone's back button close it.
-function openPicker() {
-  window.history.pushState(null, "", "?add");
-  window.scrollTo(0, 0);
-}
-
-function closePicker() {
-  window.history.back();
-}
 
 function tagLabel(exercise: Exercise) {
   if (exercise.kind === "bodyweight") return "Bodyweight";
@@ -53,6 +47,7 @@ export function PlanEditor({
   // until the page loads again, so they're added on here.
   const [created, setCreated] = useState<Exercise[]>([]);
   const pickerOpen = useSearchParams().has("add");
+  const router = useRouter();
 
   const allExercises = useMemo(
     () => [...exercises, ...created],
@@ -94,6 +89,22 @@ export function PlanEditor({
   function addExercises(exerciseIds: string[]) {
     setPlan((current) => addToPlan(current, exerciseIds));
     closePicker();
+  }
+
+  function startWorkout() {
+    // getState() reads the store once, here in the click handler, without
+    // making this component re-render whenever the store changes.
+    const { workout, start } = useActiveWorkout.getState();
+    if (
+      workout &&
+      !window.confirm(
+        `You have a ${workout.dayType} workout in progress. Discard it and start ${dayType} day?`,
+      )
+    ) {
+      return;
+    }
+    start(dayType, workoutFromPlan(plan, allExercises));
+    router.push("/workout");
   }
 
   if (pickerOpen) {
@@ -174,8 +185,11 @@ export function PlanEditor({
       </div>
 
       <BottomBar>
-        {/* Starting hands the plan to the workout screen: next milestone. */}
-        <Button className="w-full" disabled={plan.length === 0}>
+        <Button
+          className="w-full"
+          disabled={plan.length === 0}
+          onClick={startWorkout}
+        >
           <FiPlay size={18} className="fill-current" />
           Start {dayType} day · {totalSets(plan)} sets
         </Button>
@@ -183,8 +197,3 @@ export function PlanEditor({
     </>
   );
 }
-
-
-
-
- 

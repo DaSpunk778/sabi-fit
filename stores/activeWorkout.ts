@@ -168,6 +168,10 @@ export const useActiveWorkout = create<ActiveWorkoutStore>()(
     }),
      {
       name: "sabi-fit.active-workout",
+      // Don't read localStorage while the store is created: that happens before
+      // React's first render, so the phone would draw a workout the server's
+      // HTML didn't have. <ActiveWorkoutHydration /> reads it after hydration.
+      skipHydration: true,
       // `hydrated` describes this page load, not your workout — never save it.
       partialize: (state) => ({ workout: state.workout }),
       onRehydrateStorage: () => (state) => state?.markHydrated(),

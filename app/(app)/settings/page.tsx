@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { FiChevronLeft, FiLogOut, FiUser } from "react-icons/fi";
+import { FiChevronLeft, FiUser } from "react-icons/fi";
 import { logOut } from "@/app/(auth)/actions";
 import { Card } from "@/components/ui/Card";
 import { IconLink } from "@/components/ui/IconLink";
 import { getAccount } from "@/lib/data/profiles";
+import { LogOutButton } from "./LogOutButton";
 
 export const metadata: Metadata = { title: "Settings" };
 
@@ -39,13 +40,7 @@ export default async function SettingsPage() {
 
         <Card className="mt-2 overflow-hidden">
           <form action={logOut}>
-            <button
-              type="submit"
-              className="flex min-h-14 w-full items-center gap-3 px-4 text-left font-bold text-[#FF8A8A] hover:bg-raised"
-            >
-              <FiLogOut size={20} />
-              Log out
-            </button>
+            <LogOutButton />
           </form>
         </Card>
       </div>

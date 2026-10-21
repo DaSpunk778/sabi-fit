@@ -19,6 +19,7 @@ import {
 } from "@/lib/stats";
 import { getTimeZone } from "@/lib/timezone";
 import { DAY_TYPES, type Exercise } from "@/types";
+import { ResumeBanner } from "./ResumeBanner";
 import { TabBar } from "@/components/ui/TabBar";
 
 export const metadata: Metadata = { title: "Today" };
@@ -64,6 +65,9 @@ export default async function TodayPage() {
           <FiSliders size={20} />
         </IconLink>
       </div>
+
+      <ResumeBanner />
+
 
       <header className="px-5 pb-3">
         <p className="label mt-2">{format(now, "EEE d MMM")}</p>

@@ -6,7 +6,13 @@ import {
   isSameWeek,
   startOfWeek,
 } from "date-fns";
-import { DAY_TYPES, WorkoutSet, type DayType, type Exercise, type Workout } from "@/types";
+import {
+  DAY_TYPES,
+  type DayType,
+  type Exercise,
+  type Workout,
+  type WorkoutSet,
+} from "@/types";
 
 // Pure functions. Every `workouts` argument is expected newest first,
 // and `now` carries the user's time zone.

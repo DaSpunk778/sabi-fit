@@ -27,7 +27,7 @@ export function TabBar({ active }: { active: TabId }) {
           <Link
             key={tab.href}
             href={tab.href}
-            aria-current={active ? "page" : undefined}
+            aria-current={isActive ? "page" : undefined}
             className={`flex flex-col items-center justify-center gap-1 text-[11px] font-bold ${
               isActive ? "text-accent" : "text-dim hover:text-ink"
             }`}
