@@ -1,0 +1,97 @@
+/* Month countdown pill: grey, then blue, then red as the month ends. */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px 0 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Each stage sets the pill colours and the two flame colours. */
+.early {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-muted);
+  --flame-outer: #3a3f45;
+  --flame-inner: #5a6068;
+}
+.mid {
+  background: #0e1624;
+  border: 1px solid #1d3557;
+  color: #8ec5ff;
+  --flame-outer: #3d8bff;
+  --flame-inner: #a8d8ff;
+  --glow: rgba(61, 139, 255, 0.35);
+  animation: glow 1.8s ease-in-out infinite alternate;
+}
+.late {
+  background: #220f0d;
+  border: 1px solid #5c1a14;
+  color: #ff8a7a;
+  --flame-outer: #ff3b2f;
+  --flame-inner: #ffc04d;
+  --glow: rgba(255, 59, 47, 0.4);
+  animation: glow 1.3s ease-in-out infinite alternate;
+}
+
+.svg {
+  overflow: visible;
+}
+.outer {
+  fill: var(--flame-outer);
+}
+.inner {
+  fill: var(--flame-inner);
+}
+
+/* Only the blue and red flames move, growing from their base. */
+.mid .outer,
+.mid .inner,
+.late .outer,
+.late .inner {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.mid .outer,
+.late .outer {
+  animation: flicker 1.1s ease-in-out infinite alternate;
+}
+.mid .inner,
+.late .inner {
+  animation: flickerInner 0.7s ease-in-out infinite alternate;
+}
+.late .outer {
+  animation-duration: 0.8s; /* closer to the end, a hungrier flame */
+}
+
+@keyframes flicker {
+  0% { transform: scale(1, 1) skewX(0deg); }
+  50% { transform: scale(0.95, 1.07) skewX(-4deg); }
+  100% { transform: scale(1.04, 0.96) skewX(3deg); }
+}
+@keyframes flickerInner {
+  0% { transform: scale(1, 1); }
+  100% { transform: scale(0.86, 1.16); }
+}
+@keyframes glow {
+  from { box-shadow: 0 0 0 transparent; }
+  to { box-shadow: 0 0 16px var(--glow); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Same selectors as the rules above, or those would win (specificity) */
+  .mid,
+  .late,
+  .mid .outer,
+  .mid .inner,
+  .late .outer,
+  .late .inner {
+    animation: none;
+  }
+}

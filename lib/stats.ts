@@ -2,9 +2,11 @@ import { TZDate } from "@date-fns/tz";
 import {
   addDays,
   differenceInCalendarDays,
+  endOfMonth,
   isSameDay,
   isSameWeek,
   startOfWeek,
+  subWeeks,
 } from "date-fns";
 import {
   DAY_TYPES,
@@ -85,6 +87,52 @@ export function sessionsThisWeek(workouts: Workout[], now: TZDate) {
     isSameWeek(endedOn(w, now), now, { weekStartsOn: 1 }),
   ).length;
 }
+
+/** Sessions a week needs to count towards the streak ("Streak: 2 to go"). */
+export const STREAK_SESSIONS_PER_WEEK = 3;
+
+/**
+ * Weeks in a row (Monday to Sunday) with at least 3 sessions. This week
+ * joins the streak once it reaches 3; until then the streak counts up to last
+ * week, so it isn't lost on a Monday morning before you've trained.
+ */
+export function weeklyStreak(workouts: Workout[], now: TZDate): number {
+  const weekKey = (date: Date) =>
+    startOfWeek(date, { weekStartsOn: 1 }).getTime();
+
+  const sessionsByWeek = new Map<number, number>();
+  for (const workout of workouts) {
+    const key = weekKey(endedOn(workout, now));
+    sessionsByWeek.set(key, (sessionsByWeek.get(key) ?? 0) + 1);
+  }
+  const sessionsIn = (week: Date) => sessionsByWeek.get(weekKey(week)) ?? 0;
+
+  let week: Date = now;
+  if (sessionsIn(week) < STREAK_SESSIONS_PER_WEEK) week = subWeeks(week, 1);
+
+  let streak = 0;
+  while (sessionsIn(week) >= STREAK_SESSIONS_PER_WEEK) {
+    streak++;
+    week = subWeeks(week, 1);
+  }
+  return streak;
+}
+
+/** Days left in this month after today: 0 on the last day. */
+export function daysLeftInMonth(now: TZDate): number {
+  return differenceInCalendarDays(endOfMonth(now), now);
+}
+
+/** How far into the month we are: decides the streak pill's colour. */
+export type MonthStage = "early" | "mid" | "late";
+
+export function monthStage(now: TZDate): MonthStage {
+  const day = now.getDate(); // day of the month, in the user's time zone
+  if (day <= 14) return "early"; // weeks 1–2: grey
+  if (day <= 21) return "mid"; // week 3: blue
+  return "late"; // week 4 to the end: red
+}
+
 
 /**
  * Bodyweight: most reps in one set.

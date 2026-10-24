@@ -7,20 +7,24 @@ import { Logo } from "@/components/brand/Logo";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Card } from "@/components/ui/Card";
 import { IconLink } from "@/components/ui/IconLink";
+import { StreakPill } from "@/components/ui/StreakPill";
+import { TabBar } from "@/components/ui/TabBar";
 import { getExercises } from "@/lib/data/exercises";
+import { getAccount } from "@/lib/data/profiles";
 import { getWorkouts } from "@/lib/data/workouts";
 import {
   daysSinceByDay,
   sessionsThisWeek,
   suggestedDay,
   topBests,
+  daysLeftInMonth,
+  monthStage,
   weekStrip,
   type Best,
 } from "@/lib/stats";
 import { getTimeZone } from "@/lib/timezone";
 import { DAY_TYPES, type Exercise } from "@/types";
 import { ResumeBanner } from "./ResumeBanner";
-import { TabBar } from "@/components/ui/TabBar";
 
 export const metadata: Metadata = { title: "Today" };
 
@@ -39,11 +43,18 @@ function bestCaption(exercise: Exercise, best: Best) {
     : `${best.weightKg} kg`;
 }
 
+function greeting(hour: number) {
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
+
 export default async function TodayPage() {
-  const [workouts, exercises, timeZone] = await Promise.all([
+  const [workouts, exercises, timeZone, account] = await Promise.all([
     getWorkouts(),
     getExercises(),
     getTimeZone(),
+    getAccount(),
   ]);
 
   const now = TZDate.tz(timeZone ?? "UTC");
@@ -52,6 +63,9 @@ export default async function TodayPage() {
   const daysSince = daysSinceByDay(workouts, now);
   const suggested = suggestedDay(workouts);
   const bests = topBests(workouts, exercises, 2);
+  const daysLeft = daysLeftInMonth(now);
+  const stage = monthStage(now);
+  const firstName = account?.name.trim().split(/\s+/)[0] ?? "";
 
   return (
     <main className="flex-1 pb-25">
@@ -68,10 +82,28 @@ export default async function TodayPage() {
 
       <ResumeBanner />
 
-
       <header className="px-5 pb-3">
-        <p className="label mt-2">{format(now, "EEE d MMM")}</p>
-        <h1 className="display mt-1 text-[40px] leading-none">
+        <div className="mt-2 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            className="display inline-flex size-11 flex-none items-center justify-center rounded-full border-[1.5px] border-accent bg-surface text-xl text-accent"
+          >
+            {firstName.charAt(0) || "?"}
+          </span>
+          <p className="leading-[1.3]">
+            <span className="label">{format(now, "EEE d MMM")}</span>
+            <br />
+            <span className="text-[17px] font-semibold text-[#C9CDD1]">
+              {greeting(now.getHours())}
+              {firstName && (
+                <>
+                  , <b className="font-extrabold text-ink">{firstName}</b>
+                </>
+              )}
+            </span>
+          </p>
+        </div>
+        <h1 className="display mt-3.5 text-[40px] leading-none">
           What are we
           <br />
           training today?
@@ -80,11 +112,14 @@ export default async function TodayPage() {
 
       <div className="flex flex-col gap-4 px-5 pt-2">
         <Card className="px-3 py-3.5">
-          <div className="flex justify-between px-1 pb-2.5">
-            <h2 className="label">This week</h2>
-            <span className="text-xs font-extrabold text-accent">
-              {sessions} {sessions === 1 ? "session" : "sessions"}
-            </span>
+          <div className="flex items-center justify-between gap-2 px-1 pb-2.5">
+            <h2 className="label">
+              This week ·{" "}
+              <span className="text-accent">
+                {sessions} {sessions === 1 ? "session" : "sessions"}
+              </span>
+            </h2>
+              <StreakPill daysLeft={daysLeft} stage={stage} />
           </div>
           <ol className="flex justify-between">
             {week.map((day, i) => {
