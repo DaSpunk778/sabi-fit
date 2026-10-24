@@ -20,9 +20,11 @@ import {
   workoutFromPlan,
 } from "@/lib/workout";
 import { useActiveWorkout } from "@/stores/activeWorkout";
+import { useRestTimer } from "@/stores/restTimer";
 import type { Exercise, WorkoutSet } from "@/types";
 import { finishWorkout } from "./actions";
 import { ExerciseLog } from "./ExerciseLog";
+import { RestBar } from "./RestBar";
 
 type WorkoutScreenProps = {
   exercises: Exercise[];
@@ -121,6 +123,7 @@ export function WorkoutScreen({
       if (window.confirm("Discard this workout? You haven't ticked any sets.")) {
         setLeaving(true);
         discard();
+        useRestTimer.getState().skip();
         router.replace("/app");
       }
       return;
@@ -137,12 +140,13 @@ export function WorkoutScreen({
       // Clear the phone's copy only once the database has it.
       setLeaving(true);
       discard();
+      useRestTimer.getState().skip();
       router.replace("/app");
     });
   }
 
   return (
-    <main className="flex-1 pb-9">
+    <main className="flex-1 pb-28">
       <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-[#1F2226] bg-bg px-4 pt-4 pb-3">
         <Link
           href="/app"
@@ -162,7 +166,7 @@ export function WorkoutScreen({
         <Button
           onClick={finish}
           disabled={saving}
-          className="min-h-11 px-4.5 text-base"
+          size="md"
         >
           {saving ? "Saving…" : "Finish"}
         </Button>
@@ -203,6 +207,8 @@ export function WorkoutScreen({
           + Add exercise
         </Button>
       </div>
+
+      <RestBar/>
     </main>
   );
 }

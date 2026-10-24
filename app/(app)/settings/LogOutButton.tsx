@@ -2,6 +2,8 @@
 
 import { FiLogOut } from "react-icons/fi";
 import { useActiveWorkout } from "@/stores/activeWorkout";
+import { useRestTimer } from "@/stores/restTimer";
+
 
 // Submits the server's logOut form, but first wipes the workout saved on this
 // phone, so the next person to log in here can't see it.
@@ -12,6 +14,8 @@ export function LogOutButton() {
       onClick={() => {
         useActiveWorkout.getState().discard();
         useActiveWorkout.persist.clearStorage();
+        useRestTimer.getState().skip();
+        useRestTimer.persist.clearStorage();
       }}
       className="flex min-h-14 w-full items-center gap-3 px-4 text-left font-bold text-[#FF8A8A] hover:bg-raised"
     >

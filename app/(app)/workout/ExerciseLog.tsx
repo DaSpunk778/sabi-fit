@@ -5,9 +5,20 @@ import { FiCheck, FiChevronDown } from "react-icons/fi";
 import { Card } from "@/components/ui/Card";
 import { NumberInput } from "@/components/ui/NumberInput";
 import { equipmentLabel } from "@/lib/exerciseLabels";
-import { formatSet } from "@/lib/workout";
+import { currentSet, formatSet } from "@/lib/workout";
 import { useActiveWorkout } from "@/stores/activeWorkout";
+import { useRestTimer } from "@/stores/restTimer";
 import type { Exercise, WorkoutExercise, WorkoutSet } from "@/types";
+
+// Called right after a set is ticked. Zustand updates are synchronous, so
+// getState() already includes that tick: the next unticked set in the
+// workout is what you're resting for.
+function restBeforeNextSet() {
+  const workout = useActiveWorkout.getState().workout;
+  const next = workout ? currentSet(workout) : null;
+  if (next) useRestTimer.getState().startRest(next);
+  else useRestTimer.getState().skip(); // every set done: nothing to rest for
+}
 
 type ExerciseLogProps = {
   exercise: Exercise;
@@ -74,6 +85,7 @@ export function ExerciseLog({
     if (set.reps === null) setReps(id, i, reps);
     if (weighted && set.weightKg === null) setWeight(id, i, weightKg);
     toggleDone(id, i);
+    restBeforeNextSet();
   }
 
   if (!open) {

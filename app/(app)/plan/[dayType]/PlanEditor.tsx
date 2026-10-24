@@ -10,6 +10,7 @@ import { Stepper } from "@/components/ui/Stepper";
 import { addToPlan, totalSets, type PlanItem } from "@/lib/plan";
 import { workoutFromPlan } from "@/lib/workout";
 import { useActiveWorkout } from "@/stores/activeWorkout";
+import { useRestTimer } from "@/stores/restTimer";
 import type { DayType, Exercise } from "@/types";
 import {
   ExercisePicker,
@@ -104,6 +105,7 @@ export function PlanEditor({
       return;
     }
     start(dayType, workoutFromPlan(plan, allExercises));
+    useRestTimer.getState().skip(); // a new workout never inherits an old rest
     router.push("/workout");
   }
 
