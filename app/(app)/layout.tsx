@@ -1,4 +1,5 @@
 import { ActiveWorkoutHydration } from "@/components/ActiveWorkoutHydration";
+import { RestAlarm } from "@/components/RestAlarm";
 import { TimeZoneSync } from "@/components/TimeZoneSync";
 import { getTimeZone } from "@/lib/timezone";
 
@@ -14,6 +15,7 @@ export default async function AppLayout({
       {children}
       <TimeZoneSync serverTimeZone={timeZone} />
       <ActiveWorkoutHydration />
+      <RestAlarm />
     </div>
   );
 }

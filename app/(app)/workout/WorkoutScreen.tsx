@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import {
   ExercisePicker,
@@ -15,7 +15,6 @@ import { DEFAULT_SETS } from "@/lib/plan";
 import {
   currentSet,
   finishedExercises,
-  formatElapsed,
   setCounts,
   workoutFromPlan,
 } from "@/lib/workout";
@@ -23,8 +22,10 @@ import { useActiveWorkout } from "@/stores/activeWorkout";
 import { useRestTimer } from "@/stores/restTimer";
 import type { Exercise, WorkoutSet } from "@/types";
 import { finishWorkout } from "./actions";
+import { ElapsedTime } from "./ElapsedTime";
 import { ExerciseLog } from "./ExerciseLog";
 import { RestBar } from "./RestBar";
+import { RestScreen } from "./RestScreen";
 
 type WorkoutScreenProps = {
   exercises: Exercise[];
@@ -33,16 +34,6 @@ type WorkoutScreenProps = {
   /** exercise id → "Best 30 · Goal 40". */
   bestLabels: Partial<Record<string, string>>;
 };
-
-// Only this tiny component re-renders every second, not the whole screen.
-function ElapsedTime({ startedAt }: { startedAt: string }) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const timer = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-  return <>{formatElapsed(now - Date.parse(startedAt))}</>;
-}
 
 export function WorkoutScreen({
   exercises,
@@ -55,7 +46,9 @@ export function WorkoutScreen({
   const discard = useActiveWorkout((s) => s.discard);
 
   const router = useRouter();
-  const pickerOpen = useSearchParams().has("add");
+  const searchParams = useSearchParams();
+  const pickerOpen = searchParams.has("add");
+  const restOpen = searchParams.has("rest");
   const [created, setCreated] = useState<Exercise[]>([]);
   // Cards you opened or closed by hand; the rest follow `openByDefault`.
   const [toggled, setToggled] = useState<Partial<Record<string, boolean>>>({});
@@ -108,6 +101,18 @@ export function WorkoutScreen({
         }}
         onCreated={(exercise) => setCreated((c) => [...c, exercise])}
         onClose={closePicker}
+      />
+    );
+  }
+
+  if (restOpen) {
+    return (
+      <RestScreen
+        dayType={workout.dayType}
+        startedAt={workout.startedAt}
+        byId={byId}
+        lastSets={lastSets}
+        onClose={() => window.history.back()}
       />
     );
   }
@@ -208,7 +213,7 @@ export function WorkoutScreen({
         </Button>
       </div>
 
-      <RestBar/>
+      <RestBar />
     </main>
   );
 }

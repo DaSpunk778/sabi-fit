@@ -4,6 +4,7 @@ import { useId } from "react";
 import { FiCheck, FiChevronDown } from "react-icons/fi";
 import { Card } from "@/components/ui/Card";
 import { NumberInput } from "@/components/ui/NumberInput";
+import { unlockAudio } from "@/lib/beep";
 import { equipmentLabel } from "@/lib/exerciseLabels";
 import { currentSet, formatSet } from "@/lib/workout";
 import { useActiveWorkout } from "@/stores/activeWorkout";
@@ -16,8 +17,12 @@ import type { Exercise, WorkoutExercise, WorkoutSet } from "@/types";
 function restBeforeNextSet() {
   const workout = useActiveWorkout.getState().workout;
   const next = workout ? currentSet(workout) : null;
-  if (next) useRestTimer.getState().startRest(next);
-  else useRestTimer.getState().skip(); // every set done: nothing to rest for
+  if (next) {
+    unlockAudio(); // this runs from a tap, so the beep is allowed later
+    useRestTimer.getState().startRest(next);
+  } else {
+    useRestTimer.getState().skip(); // every set done: nothing to rest for
+  }
 }
 
 type ExerciseLogProps = {
