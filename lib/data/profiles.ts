@@ -21,3 +21,21 @@ export async function getAccount() {
     email: user.email ?? "",
   };
 }
+/** Change the logged-in user's name. RLS only lets them update their own row. */
+export async function updateName(name: string): Promise<void> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not logged in");
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({ name })
+    .eq("id", user.id)
+    .select("id");
+
+    if (error) throw new Error(`Couldn't save your name: ${error.message}`);
+    // An update that matches no row isn't an error in SQL; catch it ourselves.
+    if (data.length === 0) throw new Error("No profile row to update")
+}
