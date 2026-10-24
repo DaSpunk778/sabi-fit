@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SABI FIT · Wrapped 5 · PR moment</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.w{position:relative;box-sizing:border-box;overflow:hidden;font-family:Manrope,system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:15px;line-height:1.4}
+.w *{box-sizing:border-box}
+.d{font-family:'Barlow Condensed',Manrope,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+.it{font-style:italic}
+.top{position:absolute;left:12px;right:12px;top:12px;z-index:6}
+.bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.seg{height:3px;border-radius:3px;background:var(--trk);overflow:hidden}
+.seg i{display:block;height:100%;width:0;background:var(--ink)}
+.seg.done i{width:100%}
+.seg.now i{animation:fill 7s linear forwards}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.brand{display:inline-flex;align-items:center;gap:8px;font:800 11px Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.mk{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:var(--mk);color:var(--mkc)}
+.x{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:var(--ink);text-decoration:none;margin-right:-8px}
+.tap{position:absolute;top:76px;bottom:0;z-index:5}
+.prev{left:0;width:30%}
+.next{right:0;width:70%}
+.rise{opacity:0;animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fill{to{width:100%}}
+.odo{display:inline-flex;line-height:1}
+.dg{display:inline-block;height:1em;overflow:hidden}
+.dg b{display:block;line-height:1em;font-weight:inherit;animation:snap .9s cubic-bezier(.34,1.7,.6,1) 1.5s forwards}
+@keyframes snap{to{transform:translateY(-5em)}}
+.was{position:relative;display:inline-block}
+.was::after{content:'';position:absolute;left:-4px;right:-4px;top:52%;height:5px;background:#0B0C0E;transform:scaleX(0);transform-origin:0 50%;animation:strike .35s ease 1.2s forwards}
+@keyframes strike{to{transform:scaleX(1)}}
+.stick{position:absolute;right:6px;top:-6px;padding:10px 14px;border-radius:14px;background:#0B0C0E;color:#C8F135;transform:rotate(8deg) scale(0);animation:stick .5s cubic-bezier(.34,1.56,.64,1) 2.4s forwards}
+@keyframes stick{to{transform:rotate(8deg) scale(1)}}
+.burst{position:absolute;left:50%;top:50%;width:360px;height:360px;margin:-180px 0 0 -180px;border-radius:50%;border:3px solid #0B0C0E;opacity:0;animation:burst .9s ease-out 2.1s forwards}
+@keyframes burst{0%{opacity:.5;transform:scale(.2)}100%{opacity:0;transform:scale(1.2)}}
+@media (prefers-reduced-motion: reduce){.w *{animation-duration:1ms!important;animation-delay:0s!important}}
+</style>
+<style>body{background:#050607}body>div{margin:0 auto}</style>
+</head>
+<body>
+<div class="w" style="width: 390px; height: 844px; background: #C8F135; color: #0B0C0E; --ink: #0B0C0E; --trk: rgba(11,12,14,.2); --mk: #0B0C0E; --mkc: #C8F135;">
+  <div class="top">
+    <div class="bars"><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg now"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span></div>
+    <div class="hd">
+      <span class="brand"><span class="mk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg></span>Sabi Fit · Wrapped</span>
+      <a class="x" href="04-today.html" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></a>
+    </div>
+  </div>
+  <a class="tap prev" href="17-wrapped-4-split.html" aria-label="Previous slide"></a>
+  <a class="tap next" href="19-wrapped-6-personality.html" aria-label="Next slide"></a>
+
+  <div style="position: absolute; left: 24px; right: 24px; top: 120px;">
+    <div class="rise" style="animation-delay: .1s; font: 800 12px Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #3A4710;">PR moment · biggest jump</div>
+    <h2 class="d it rise" style="animation-delay: .25s; margin: 10px 0 0; font-size: 78px; line-height: .84;">Hammer<br>curl</h2>
+
+    <div class="rise" style="animation-delay: .7s; margin-top: 30px; display: flex; align-items: baseline; gap: 10px; font: 800 18px Manrope, sans-serif; color: #2B350B;">September best: <span class="d it was" style="font-size: 40px; color: #0B0C0E;">20 kg</span></div>
+
+    <div style="position: relative; margin-top: 6px;">
+      <div class="burst" aria-hidden="true"></div>
+      <div class="d it" style="display: flex; align-items: flex-end; font-size: 236px; line-height: 1;" aria-label="25 kilograms">
+        <span class="odo"><span>2</span><span class="dg"><b>0<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</b></span></span>
+        <span style="font-size: 56px; line-height: 1; padding: 0 0 30px 8px;">kg</span>
+      </div>
+      <div class="stick"><span class="d it" style="font-size: 34px; line-height: 1;">+5 kg</span></div>
+    </div>
+
+    <p class="rise" style="animation-delay: 2.7s; margin: 4px 0 0; font-size: 17px; font-weight: 700; max-width: 300px;">You moved up a whole dumbbell. That's a 25% jump in one month.</p>
+
+    <div class="rise" style="animation-delay: 3.1s; margin-top: 26px; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(11,12,14,.08); border: 1.5px solid rgba(11,12,14,.18);">
+      <span style="font: 800 11px Manrope, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #3A4710;">Runner-up</span>
+      <span style="flex: 1; font-size: 15px; font-weight: 800;">Push-ups: 30 → 36 reps</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SABI FIT · Wrapped 6 · Personality</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.w{position:relative;box-sizing:border-box;overflow:hidden;font-family:Manrope,system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:15px;line-height:1.4}
+.w *{box-sizing:border-box}
+.d{font-family:'Barlow Condensed',Manrope,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+.it{font-style:italic}
+.top{position:absolute;left:12px;right:12px;top:12px;z-index:6}
+.bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.seg{height:3px;border-radius:3px;background:var(--trk);overflow:hidden}
+.seg i{display:block;height:100%;width:0;background:var(--ink)}
+.seg.done i{width:100%}
+.seg.now i{animation:fill 7s linear forwards}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.brand{display:inline-flex;align-items:center;gap:8px;font:800 11px Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.mk{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:var(--mk);color:var(--mkc)}
+.x{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:var(--ink);text-decoration:none;margin-right:-8px}
+.tap{position:absolute;top:76px;bottom:0;z-index:5}
+.prev{left:0;width:30%}
+.next{right:0;width:70%}
+.rise{opacity:0;animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fill{to{width:100%}}
+.stamp{position:relative;margin:30px auto 0;width:300px;padding:26px 20px 22px;border:5px solid #0B0C0E;border-radius:22px;text-align:center;opacity:0;transform:rotate(-14deg) scale(2.4);animation:stamp .55s cubic-bezier(.2,1.4,.4,1) .9s forwards}
+.stamp::before{content:'';position:absolute;inset:7px;border:2px solid #0B0C0E;border-radius:14px}
+@keyframes stamp{60%{opacity:1}to{opacity:1;transform:rotate(-6deg) scale(1)}}
+.shake{animation:shake .25s ease 1.4s}
+@keyframes shake{25%{transform:translate(3px,-2px)}50%{transform:translate(-3px,2px)}75%{transform:translate(2px,1px)}}
+.hl{background:#C8F135;padding:0 8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ev{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1.5px solid #D5D8D3}
+.ev b{display:inline-flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;border-radius:9px;background:#0B0C0E;color:#C8F135;font:800 13px Manrope,sans-serif}
+@media (prefers-reduced-motion: reduce){.w *{animation-duration:1ms!important;animation-delay:0s!important}}
+</style>
+<style>body{background:#050607}body>div{margin:0 auto}</style>
+</head>
+<body>
+<div class="w shake" style="width: 390px; height: 844px; background: #F2F3F1; color: #0B0C0E; --ink: #0B0C0E; --trk: rgba(11,12,14,.18); --mk: #0B0C0E; --mkc: #C8F135;">
+  <div class="top">
+    <div class="bars"><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg now"><i></i></span><span class="seg"><i></i></span></div>
+    <div class="hd">
+      <span class="brand"><span class="mk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg></span>Sabi Fit · Wrapped</span>
+      <a class="x" href="04-today.html" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></a>
+    </div>
+  </div>
+  <a class="tap prev" href="18-wrapped-5-pr.html" aria-label="Previous slide"></a>
+  <a class="tap next" href="20-wrapped-7-share.html" aria-label="Next slide"></a>
+
+  <div style="position: absolute; left: 24px; right: 24px; top: 120px;">
+    <div class="rise" style="animation-delay: .1s; font: 800 12px Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #5C6268;">Your gym personality</div>
+    <h2 class="d it rise" style="animation-delay: .25s; margin: 10px 0 0; font-size: 50px; line-height: .9;">This month,<br>you were a…</h2>
+
+    <div class="stamp">
+      <div class="d it" style="font-size: 20px; letter-spacing: .14em;">★ Certified ★</div>
+      <div class="d it" style="margin-top: 6px; font-size: 64px; line-height: 1;"><span class="hl" style="display: inline-block; padding: 4px 10px 0; line-height: .9;">Chest day</span><br>loyalist</div>
+      <div style="margin-top: 10px; font: 800 11px Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase;">October 2026 · Sabi Fit</div>
+    </div>
+
+    <div style="margin-top: 34px;">
+      <div class="ev rise" style="animation-delay: 1.8s;"><b>5×</b><span style="font-size: 15px; font-weight: 700;">Chest every single Friday. Not one missed.</span></div>
+      <div class="ev rise" style="animation-delay: 2s;"><b>100</b><span style="font-size: 15px; font-weight: 700;">Push-ups or more on every chest day.</span></div>
+      <div class="ev rise" style="animation-delay: 2.2s; border-bottom: 1.5px solid #D5D8D3;"><b>2×</b><span style="font-size: 15px; font-weight: 700;">Over twice as many chest days as leg days. Leg day misses you.</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

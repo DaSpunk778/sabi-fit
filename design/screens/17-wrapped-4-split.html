@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SABI FIT · Wrapped 4 · Your split</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.w{position:relative;box-sizing:border-box;overflow:hidden;font-family:Manrope,system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:15px;line-height:1.4}
+.w *{box-sizing:border-box}
+.d{font-family:'Barlow Condensed',Manrope,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+.it{font-style:italic}
+.top{position:absolute;left:12px;right:12px;top:12px;z-index:6}
+.bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.seg{height:3px;border-radius:3px;background:var(--trk);overflow:hidden}
+.seg i{display:block;height:100%;width:0;background:var(--ink)}
+.seg.done i{width:100%}
+.seg.now i{animation:fill 7s linear forwards}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.brand{display:inline-flex;align-items:center;gap:8px;font:800 11px Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.mk{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:var(--mk);color:var(--mkc)}
+.x{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:var(--ink);text-decoration:none;margin-right:-8px}
+.tap{position:absolute;top:76px;bottom:0;z-index:5}
+.prev{left:0;width:30%}
+.next{right:0;width:70%}
+.rise{opacity:0;animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fill{to{width:100%}}
+.lane{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;gap:10px}
+.lname{font-size:23px;line-height:1;color:#C9CDD1}
+.track{position:relative;height:38px;border-radius:10px;background:#121417;overflow:hidden}
+.runner{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:10px;background:#2A2E33;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;animation:race 2.6s cubic-bezier(.45,.05,.3,1) .5s forwards}
+.runner.win{background:#C8F135}
+@keyframes race{0%{width:0}55%{width:var(--m)}100%{width:var(--w)}}
+.cnt{font:800 15px Manrope,sans-serif;color:#F2F3F1;opacity:0;animation:pop .3s ease 3.1s forwards}
+.win .cnt{color:#0B0C0E}
+@keyframes pop{to{opacity:1}}
+.flag{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:99px;background:#C8F135;color:#0B0C0E;font:800 11px Manrope,sans-serif;letter-spacing:.1em;opacity:0;transform:scale(.4);animation:flag .45s cubic-bezier(.34,1.56,.64,1) 3.2s forwards}
+@keyframes flag{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.w *{animation-duration:1ms!important;animation-delay:0s!important}}
+</style>
+<style>body{background:#050607}body>div{margin:0 auto}</style>
+</head>
+<body>
+<div class="w" style="width: 390px; height: 844px; background: #0B0C0E; color: #F2F3F1; --ink: #F2F3F1; --trk: rgba(242,243,241,.22); --mk: #C8F135; --mkc: #0B0C0E;">
+  <div class="top">
+    <div class="bars"><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg done"><i></i></span><span class="seg now"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span></div>
+    <div class="hd">
+      <span class="brand"><span class="mk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg></span>Sabi Fit · Wrapped</span>
+      <a class="x" href="04-today.html" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></a>
+    </div>
+  </div>
+  <a class="tap prev" href="16-wrapped-3-volume.html" aria-label="Previous slide"></a>
+  <a class="tap next" href="18-wrapped-5-pr.html" aria-label="Next slide"></a>
+
+  <div style="position: absolute; left: 24px; right: 24px; top: 120px;">
+    <div class="rise" style="animation-delay: .1s; font: 800 12px Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9AA0A6;">Your split</div>
+    <h2 class="d it rise" style="animation-delay: .2s; margin: 10px 0 0; font-size: 56px; line-height: .88;">Six days.<br>One winner.</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 34px;">
+      
+        <div class="lane">
+          <span class="d it lname">Chest</span>
+          <div class="track"><div class="runner win" style="--w: 100%; --m: 38%;"><span class="cnt">5</span></div></div>
+        </div>
+      
+        <div class="lane">
+          <span class="d it lname">Back</span>
+          <div class="track"><div class="runner" style="--w: 60%; --m: 58%;"><span class="cnt">3</span></div></div>
+        </div>
+      
+        <div class="lane">
+          <span class="d it lname">Biceps</span>
+          <div class="track"><div class="runner" style="--w: 60%; --m: 44%;"><span class="cnt">3</span></div></div>
+        </div>
+      
+        <div class="lane">
+          <span class="d it lname">Arms</span>
+          <div class="track"><div class="runner" style="--w: 60%; --m: 50%;"><span class="cnt">3</span></div></div>
+        </div>
+      
+        <div class="lane">
+          <span class="d it lname">Legs</span>
+          <div class="track"><div class="runner" style="--w: 40%; --m: 30%;"><span class="cnt">2</span></div></div>
+        </div>
+      
+        <div class="lane">
+          <span class="d it lname">Shoulders</span>
+          <div class="track"><div class="runner" style="--w: 40%; --m: 34%;"><span class="cnt">2</span></div></div>
+        </div>
+      
+    </div>
+
+    <div style="margin-top: 34px; display: flex; align-items: center; gap: 10px;"><span class="flag"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5z"></path></svg>Winner</span></div>
+    <div class="d it rise" style="animation-delay: 3.4s; margin-top: 10px; font-size: 76px; line-height: .86; color: #C8F135;">Chest<br>ran it.</div>
+    <p class="rise" style="animation-delay: 3.7s; margin: 12px 0 0; font-size: 15px; font-weight: 700; color: #C9CDD1;">5 of your 18 sessions. Back held the lead until mid-month.</p>
+  </div>
+</div>
+</body>
+</html>

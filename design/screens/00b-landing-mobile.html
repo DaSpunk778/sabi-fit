@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SABI FIT · SABI FIT: Landing (mobile)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B0C0E}
+a{color:#C8F135}a:hover{color:#E2FF7A}
+.pg{box-sizing:border-box;width:390px;font-family:Manrope,system-ui,sans-serif;color:#F2F3F1;background:#0B0C0E;font-size:16px;line-height:1.5;overflow:hidden;font-variant-numeric:tabular-nums}
+.pg *{box-sizing:border-box}
+.wrap{margin:0 auto;padding:0 20px}
+.d{font-family:'Barlow Condensed',Manrope,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+.it{font-style:italic}
+.lime{color:#C8F135}
+.mut{color:#A3A9AF}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:99px;border:1px solid #2A2E33;background:#15171A;font:800 12px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#C9CDD1}
+.dot{width:8px;height:8px;border-radius:50%;background:#C8F135}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:16px;border:0;font:800 17px Manrope,sans-serif;background:#C8F135;color:#0B0C0E;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#0B0C0E;background:#D6F95E}
+.ghost{background:transparent;color:#F2F3F1;border:1px solid #3A3F45}
+.ghost:hover{color:#F2F3F1;background:#15171A}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.mark{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#C8F135;color:#0B0C0E;flex:none}
+.hero{display:flex;flex-direction:column;gap:56px;padding:20px 0 72px}
+.h1{margin:20px 0 0;font-size:64px;line-height:.86}
+.phone{position:relative;width:300px;height:610px;border-radius:44px;background:#0B0C0E;border:10px solid #1E2125;box-shadow:0 40px 120px rgba(0,0,0,.6);overflow:hidden;padding:22px 14px}
+.mini{background:#15171A;border:1px solid #24282D;border-radius:16px;overflow:hidden}
+.mr{display:grid;grid-template-columns:22px minmax(0,1fr) 56px 34px;gap:8px;align-items:center;padding:6px 10px;min-height:46px;font-size:13px}
+.ck{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1.5px solid #3A3F45;color:#80868D}
+.ck.on{background:#C8F135;border-color:#C8F135;color:#0B0C0E}
+.nb{display:flex;align-items:center;justify-content:center;height:34px;border-radius:10px;font-weight:800;font-size:15px}
+.best{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:99px;background:rgba(200,241,53,.16);color:#C8F135;font:800 10px Manrope,sans-serif;letter-spacing:.06em}
+.band{background:#C8F135;color:#0B0C0E;overflow:hidden;white-space:nowrap;padding:16px 0;transform:rotate(-2deg);margin:0 -40px}
+.band span{font-size:40px;line-height:1}
+.steps{display:flex;flex-direction:column;gap:16px;margin-top:36px}
+.step{padding:28px 24px 30px;border-radius:24px;background:#15171A;border:1px solid #24282D}
+.num{font-size:60px;line-height:1;color:#C8F135}
+.fd{display:flex;flex-direction:column;gap:56px}
+.photo{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:#15171A;border:2px solid #C8F135}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.sticker{position:absolute;right:12px;top:24px;transform:rotate(6deg);padding:10px 16px;border-radius:14px;background:#0B0C0E;color:#F2F3F1;border:2px solid #C8F135;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.chip{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:99px;border:1px solid #2A2E33;background:#15171A;font:700 13px Manrope,sans-serif;color:#C9CDD1}
+.quote{position:relative;margin:24px 0 0;padding-left:20px;font-size:17px;line-height:1.6;color:#DADDE0}
+.quote::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:4px;border-radius:4px;background:#C8F135}
+.cta{position:relative;border-radius:28px;background:#C8F135;color:#0B0C0E;padding:44px 24px;overflow:hidden}
+.foot{display:flex;flex-direction:column;align-items:flex-start;gap:18px;padding:32px 0 40px;border-top:1px solid #1F2226}
+.foot a{color:#C9CDD1;text-decoration:none;font-weight:700;font-size:14px}
+.foot a:hover{color:#C8F135}
+</style>
+<style>body{background:#050607}body>div{margin:0 auto}</style>
+</head>
+<body>
+<div class="pg">
+
+  <div class="wrap">
+    <header class="nav">
+      <a href="#top" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #F2F3F1;" aria-label="SABI FIT home">
+        <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg></span>
+        <span class="d it" style="font-size: 26px;">Sabi <span class="lime">Fit</span></span>
+      </a>
+      <a class="btn" href="01-welcome.html" style="min-height: 44px; padding: 0 16px; font-size: 14px; border-radius: 12px;">Open the app</a>
+    </header>
+
+    <section class="hero" id="top">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Gym tracker for real sessions</span>
+        <h1 class="d it h1">Know your<br>numbers.<br><span class="lime">Beat your<br>last session.</span></h1>
+        <p class="mut" style="margin: 22px 0 0; font-size: 17px;">Pick today's muscle group, log every set, and SABI FIT shows you exactly what to beat, from 25 kg curls to your push-up max.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 30px;">
+          <a class="btn" href="01-welcome.html">Start training free <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          <a class="btn ghost" href="#how">See how it works</a>
+        </div>
+      </div>
+
+      <div style="position: relative; display: flex; justify-content: center;">
+        <svg width="460" height="460" viewBox="0 0 560 560" aria-hidden="true" style="position: absolute; right: -160px; top: 30px;">
+          <circle cx="280" cy="280" r="250" fill="none" stroke="#15171A" stroke-width="44"></circle>
+          <circle cx="280" cy="280" r="250" fill="none" stroke="#C8F135" stroke-width="44" stroke-linecap="round" stroke-dasharray="1100 1571" transform="rotate(-90 280 280)"></circle>
+        </svg>
+        <div class="phone" role="img" aria-label="SABI FIT workout screen showing a new push-up best of 31 reps">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 4px 14px;">
+            <span><span class="d" style="font-size: 22px; display: block; line-height: 1;">Chest day</span><span class="mut" style="font-size: 12px; font-weight: 700;">18:42 · 4 / 13 sets</span></span>
+            <span class="btn" style="min-height: 34px; padding: 0 12px; font-size: 13px; border-radius: 10px;">Finish</span>
+          </div>
+          <div class="mini">
+            <div style="padding: 12px 12px 6px;"><span class="d" style="font-size: 20px;">Push-ups</span><br><span class="mut" style="font-size: 11px; font-weight: 700;">Best 30 · Goal 40</span></div>
+            <div class="mr" style="background: rgba(200,241,53,.07);"><b style="text-align: center;">1</b><span style="display: flex; gap: 6px; align-items: center;"><span class="mut">30</span><span class="best">NEW BEST</span></span><span class="nb">31</span><span class="ck on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+            <div class="mr" style="background: rgba(200,241,53,.07);"><b style="text-align: center;">2</b><span class="mut">25</span><span class="nb">26</span><span class="ck on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+            <div class="mr" style="box-shadow: inset 3px 0 0 #C8F135;"><b style="text-align: center;">3</b><span class="mut">22</span><span class="nb" style="border: 1px solid #2A2E33; background: #0F1113; color: #6B7178;">22</span><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+            <div style="height: 10px;"></div>
+          </div>
+          <div class="mini" style="margin-top: 10px; padding: 12px;"><span class="d" style="font-size: 18px;">Dumbbell Floor Press</span><br><span class="mut" style="font-size: 11px; font-weight: 700;">25 kg · 2 / 3 sets</span></div>
+          <div class="mini" style="margin-top: 10px; padding: 12px;"><span class="d" style="font-size: 18px;">Dumbbell Pullover</span><br><span class="mut" style="font-size: 11px; font-weight: 700;">25 kg · 0 / 3 sets</span></div>
+          <div style="position: absolute; left: 12px; right: 12px; bottom: 16px; height: 56px; border-radius: 16px; background: #1E2125; border: 1px solid #C8F135; display: flex; align-items: center; gap: 10px; padding: 0 8px 0 14px; overflow: hidden;">
+            <span style="position: absolute; left: 0; bottom: 0; height: 3px; width: 55%; background: #C8F135;"></span>
+            <span style="font: 800 11px Manrope, sans-serif; letter-spacing: .08em; color: #C8F135;">REST</span>
+            <span class="d" style="font-size: 26px; flex: 1;">0:49</span>
+            <span class="btn" style="min-height: 38px; padding: 0 12px; font-size: 13px; border-radius: 10px;">Skip</span>
+          </div>
+        </div>
+        <div style="position: absolute; left: -4px; bottom: 40px; transform: rotate(-5deg); padding: 12px 16px; border-radius: 16px; background: #15171A; border: 1px solid #2A2E33; box-shadow: 0 20px 50px rgba(0,0,0,.5);">
+          <span class="best" style="height: 22px; font-size: 10px;">NEW BEST</span>
+          <div class="d" style="font-size: 28px; line-height: 1.05; margin-top: 6px;">31 push-ups</div>
+          <div class="mut" style="font-size: 12px; font-weight: 700;">was 30 last Friday</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="band" aria-hidden="true">
+    <span class="d it">Chest &#8226; Biceps &#8226; Arms &#8226; Shoulders &#8226; Back &#8226; Legs &#8226;</span>
+  </div>
+
+  <section class="wrap" id="how" style="padding-top: 88px; padding-bottom: 88px;">
+    <span class="eyebrow"><span class="dot"></span>How it works</span>
+    <h2 class="d it" style="margin: 16px 0 0; font-size: 52px; line-height: .9;">Three steps.<br><span class="lime">No fluff.</span></h2>
+    <div class="steps">
+      <article class="step">
+        <div class="d it num">01</div>
+        <h3 class="d" style="margin: 14px 0 0; font-size: 30px; line-height: 1;">Pick your day</h3>
+        <p class="mut" style="margin: 10px 0 0; font-size: 16px;">Chest, biceps, arms, shoulders, back or legs. Your last session for that day loads by itself, ready to go.</p>
+      </article>
+      <article class="step">
+        <div class="d it num">02</div>
+        <h3 class="d" style="margin: 14px 0 0; font-size: 30px; line-height: 1;">Log every set</h3>
+        <p class="mut" style="margin: 10px 0 0; font-size: 16px;">Reps for push-ups, kg × reps for dumbbells. Tick a set and the rest timer starts on its own.</p>
+      </article>
+      <article class="step">
+        <div class="d it num">03</div>
+        <h3 class="d" style="margin: 14px 0 0; font-size: 30px; line-height: 1;">Beat last time</h3>
+        <p class="mut" style="margin: 10px 0 0; font-size: 16px;">Every set shows what you did last time. New bests light up and your charts keep the score.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="founder" style="padding-bottom: 88px;">
+    <div class="fd">
+      <div style="position: relative;">
+        <div class="photo">
+          <img src="founder.jpg" alt="Ayomide, founder of SABI FIT, giving a thumbs up at his laptop">
+        </div>
+        <div class="sticker"><span class="d it" style="font-size: 20px; line-height: 1;">Founder &amp; <span class="lime">Lead Dev</span></span></div>
+        <div class="d it" aria-hidden="true" style="position: absolute; left: -4px; bottom: -30px; font-size: 92px; line-height: 1; color: transparent; -webkit-text-stroke: 2px #2A2E33;">Sabi</div>
+      </div>
+
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Behind SABI FIT</span>
+        <h2 class="d it" style="margin: 16px 0 0; font-size: 48px; line-height: .9;">Built by someone<br><span class="lime">who trains with it.</span></h2>
+        <blockquote class="quote">
+          I was getting back into the gym, and my progress lived in my head: 25 kg curls, 30 push-ups, and no idea what I did last week. So I built the tool I wanted. Pick the day, log the sets, beat last time.
+          <br><br>
+          SABI FIT is also my classroom. Every screen here taught me something new about building real products.
+        </blockquote>
+        <div style="margin-top: 24px;">
+          <span class="d" style="font-size: 34px; line-height: 1; display: block;">Ayomide</span><span style="font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #C8F135;">Founder &amp; Lead Developer</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;">
+          <span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">GSAP</span><span class="chip">Supabase</span>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <a class="btn ghost" href="https://github.com/DaSpunk778" style="min-height: 48px; font-size: 15px; flex: 1; padding: 0 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.870a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.540 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.130V22"></path></svg>GitHub</a>
+          <a class="btn ghost" href="#founder" style="min-height: 48px; font-size: 15px; flex: 1; padding: 0 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Portfolio</a>
+        </div>
+        <p class="mut" style="margin: 24px 0 0; font-size: 14px;"><b style="color: #F2F3F1;">"Sabi"</b> · Nigerian Pidgin: to know, to be skilled at something.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom: 64px;">
+    <div class="cta">
+      <svg width="300" height="300" viewBox="0 0 420 420" aria-hidden="true" style="position: absolute; right: -90px; top: -90px;">
+        <circle cx="210" cy="210" r="180" fill="none" stroke="#0B0C0E" stroke-width="36" stroke-linecap="round" stroke-dasharray="800 1131" transform="rotate(-90 210 210)" opacity=".12"></circle>
+      </svg>
+      <h2 class="d it" style="position: relative; margin: 0; font-size: 50px; line-height: .88;">Your next session<br>starts here.</h2>
+      <p style="position: relative; margin: 18px 0 0; font-size: 17px; font-weight: 600; color: #2B350B;">Free to use. Create an account and your workouts are saved on every device you log in from.</p>
+      <div style="position: relative; display: flex; flex-direction: column; gap: 12px; margin-top: 28px;">
+        <a class="btn" href="01-welcome.html" style="background: #0B0C0E; color: #C8F135;">Open SABI FIT <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        <a class="btn" href="03-login.html" style="background: transparent; color: #0B0C0E; border: 2px solid #0B0C0E;">Log in</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div class="foot">
+      <span style="display: inline-flex; align-items: center; gap: 10px;">
+        <span class="mark" style="width: 30px; height: 30px; border-radius: 9px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg></span>
+        <span class="d it" style="font-size: 22px;">Sabi <span class="lime">Fit</span></span>
+      </span>
+      <span style="display: flex; gap: 20px; flex-wrap: wrap;"><a href="03-login.html">Log in</a><a href="02-signup.html">Create account</a><a href="https://github.com/DaSpunk778">GitHub</a></span>
+      <p class="mut" style="margin: 0; font-size: 13px;">© 2026 SABI FIT. Designed &amp; built by Ayomide. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

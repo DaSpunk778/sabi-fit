@@ -27,23 +27,42 @@ a{color:#C8F135}a:hover{color:#E2FF7A}
 .day.sug{background:#C8F135;border-color:#C8F135;color:#0B0C0E}
 .li{display:flex;align-items:center;gap:12px;padding:12px 16px;color:#F2F3F1;text-decoration:none}
 .li + .li{border-top:1px solid #24282D}
+.streak{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px 0 6px;border-radius:999px;background:#1F1610;border:1px solid #4A2A12;font:800 12px Manrope,sans-serif;color:#FFB443;letter-spacing:.02em;animation:glow 1.8s ease-in-out infinite alternate}
+.streak svg{overflow:visible}
+.fl{transform-box:fill-box;transform-origin:50% 100%}
+.fl-o{animation:flk 1.1s ease-in-out infinite alternate}
+.fl-i{animation:flk2 .7s ease-in-out infinite alternate}
+@keyframes flk{0%{transform:scale(1,1) skewX(0deg)}50%{transform:scale(.95,1.07) skewX(-4deg)}100%{transform:scale(1.04,.96) skewX(3deg)}}
+@keyframes flk2{0%{transform:scale(1,1)}100%{transform:scale(.86,1.16)}}
+@keyframes glow{from{box-shadow:0 0 0 rgba(255,122,26,0)}to{box-shadow:0 0 16px rgba(255,122,26,.35)}}
+@media (prefers-reduced-motion: reduce){.streak,.fl-o,.fl-i{animation:none}}
 </style>
 <style>body{background:#050607}body>div{margin:0 auto}</style>
 </head>
 <body>
-<div class="s" style="width: 390px; height: 970px;">
+<div class="s" style="width: 390px; height: 1070px;">
   <header style="padding: 16px 20px 12px;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
     <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 9px; background: #C8F135; color: #0B0C0E;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"></path></svg></span><span class="d" style="font-size: 24px; font-style: italic;">Sabi <span style="color: #C8F135;">Fit</span></span></span>
     <a class="ib" href="13-settings.html" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg></a>
     </div>
-    <div class="lbl" style="margin-top: 20px;">Fri 2 Oct</div>
-    <h1 class="d" style="margin: 4px 0 0; font-size: 44px; line-height: 1;">What are we<br>training today?</h1>
+    <div style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
+      <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 44px; border-radius: 50%; background: #15171A; border: 1.5px solid #C8F135; color: #C8F135; font: 700 20px 'Barlow Condensed', Manrope, sans-serif;">A</span>
+      <p style="margin: 0; line-height: 1.3;"><span class="lbl">Fri 2 Oct</span><br><span style="font-size: 17px; font-weight: 600; color: #C9CDD1;">Good evening, <b style="font-weight: 800; color: #F2F3F1;">Ayomide</b></span></p>
+    </div>
+    <h1 class="d" style="margin: 14px 0 0; font-size: 40px; line-height: 1">What are we<br>training today?</h1>
   </header>
 
   <div style="padding: 8px 20px 0; display: flex; flex-direction: column; gap: 16px;">
+    <a href="14-wrapped-1-intro.html" style="position: relative; display: flex; align-items: center; gap: 14px; padding: 14px 14px 14px 18px; border-radius: 18px; background: #C8F135; color: #0B0C0E; text-decoration: none; overflow: hidden;">
+      <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true" style="position: absolute; right: -34px; top: -30px;"><circle cx="60" cy="60" r="46" fill="none" stroke="#0B0C0E" stroke-width="14" stroke-linecap="round" stroke-dasharray="200 290" opacity=".12"></circle></svg>
+      <span class="d" style="position: relative; font-size: 30px; line-height: .86; font-style: italic;">October<br>wrapped</span>
+      <span style="position: relative; flex: 1; font-size: 13px; font-weight: 700; line-height: 1.35; color: #2B350B;">Your month in 7 slides. 18 sessions, 1 big PR.</span>
+      <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0B0C0E; color: #C8F135;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"></polygon></svg></span>
+    </a>
+
     <section class="card" style="padding: 14px 12px;">
-      <div style="display: flex; justify-content: space-between; padding: 0 4px 10px;"><span class="lbl">This week</span><span style="font-size: 12px; font-weight: 800; color: #C8F135;">3 sessions</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 4px 10px;"><span class="lbl">This week · <span style="color: #C8F135;">3 sessions</span></span><span class="streak"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path class="fl fl-o" fill="#FF7A1A" d="M12 1.5c1 3.3 4.7 5.2 5.7 8.8.9 3.4-.6 6.8-3.3 8.3-1 .6-2.2.9-3.4.9-3.7 0-6.5-2.9-6.5-6.4 0-2.7 1.4-4.2 2.7-5.8.3 1.6 1 2.7 2.2 3.3C9 7.4 10.4 4.3 12 1.5z"></path><path class="fl fl-i" fill="#FFD23F" d="M12.3 10.6c.6 1.7 2.5 2.7 2.5 4.8 0 1.7-1.3 3-2.8 3s-2.7-1.2-2.7-2.7c0-1.4.8-2.1 1.5-2.9.2.6.5 1 1 1.3-.1-1.2.1-2.3.5-3.5z"></path></svg>4-week streak</span></div>
       <div style="display: flex; justify-content: space-between;">
         <div class="wk"><span class="wd done">M</span><span class="wl">Back</span></div>
         <div class="wk"><span class="wd">T</span><span class="wl"></span></div>
