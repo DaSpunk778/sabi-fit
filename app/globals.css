@@ -14,6 +14,21 @@
   --color-accent: #c8f135;
   --color-accent-hover: #e2ff7a;
   --color-danger: #ff7a7a;
+
+  /* `animate-tap`: a finger pressing down and lifting, to say "tap me" */
+  --animate-tap: tap 1.4s ease-in-out infinite;
+  @keyframes tap {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    40% {
+      transform: translateY(3px) scale(0.9);
+    }
+    55% {
+      transform: translateY(0) scale(1);
+    }
+  }
 }
 
 @theme inline {
